@@ -1,4 +1,4 @@
-curl "http://localhost4741/games" \
+curl "http://localhost:4741/games" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \

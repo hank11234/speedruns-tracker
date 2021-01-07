@@ -5,7 +5,7 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    release_date: {
+    releaseDate: {
         type: String,
         required: true
     },
@@ -21,3 +21,5 @@ const gameSchema = new mongoose.Schema({
 }, {
     timestamps: true
 })
+
+module.exports = mongoose.model('Game', gameSchema)
