@@ -77,7 +77,7 @@ router.get('/games', requireToken, (req, res, next) => {
     // owner, prevent that by deleting that key/value pair
     delete req.body.game.owner
   
-    Games.findById(req.params.id)
+    Game.findById(req.params.id)
       .then(handle404)
       .then(game => {
         // pass the `req` object and the Mongoose record to `requireOwnership`
