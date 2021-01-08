@@ -42,7 +42,7 @@ router.get('/games', requireToken, (req, res, next) => {
   })
   
   // SHOW
-  // GET /games/5a7db6c74d55bc51bdf39793
+  // GET /games/:id
   router.get('/games/:id', requireToken, (req, res, next) => {
     // req.params.id will be set based on the `:id` in the route
     Game.findById(req.params.id)
@@ -71,7 +71,7 @@ router.get('/games', requireToken, (req, res, next) => {
   })
   
   // UPDATE
-  // PATCH /games/5a7db6c74d55bc51bdf39793
+  // PATCH /games/:id
   router.patch('/games/:id', requireToken, removeBlanks, (req, res, next) => {
     // if the client attempts to change the `owner` property by including a new
     // owner, prevent that by deleting that key/value pair
@@ -94,7 +94,7 @@ router.get('/games', requireToken, (req, res, next) => {
   })
   
   // DESTROY
-  // DELETE /games/5a7db6c74d55bc51bdf39793
+  // DELETE /games/:id
   router.delete('/games/:id', requireToken, (req, res, next) => {
     Game.findById(req.params.id)
       .then(handle404)
