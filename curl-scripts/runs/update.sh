@@ -1,13 +1,13 @@
-curl "http://localhost:4741/games/${ID}" \
+curl "http://localhost:4741/runs/${ID}" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
-    "game": {
-      "title": "'"${TITLE}"'",
-      "releaseDate": "'"${DATE}"'",
-      "genre": "'"${GENRE}"'",
-      "platform": "'"${PLATFORM}"'"
+    "run": {
+      "time": "'"${TITLE}"'",
+      "date": "'"${DATE}"'",
+      "goal": "'"${GOAL}"'",
+      "gameId": "'"${GAMEID}"'"
     }
   }'

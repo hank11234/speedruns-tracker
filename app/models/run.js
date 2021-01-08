@@ -10,10 +10,11 @@ const runSchema = new mongoose.Schema({
         required: true
     },
     goal: {
-        type: String
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
 })
 
-module.exports = mongoose.model('Run', runSchema)
+module.exports = runSchema

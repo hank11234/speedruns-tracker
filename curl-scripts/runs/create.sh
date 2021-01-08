@@ -7,6 +7,7 @@ curl "http://localhost:4741/runs" \
     "run": {
       "time": "'"${TIME}"'",
       "date": "'"${DATE}"'",
-      "goal": "'"${GOAL}"'"
+      "goal": "'"${GOAL}"'",
+      "gameId": "'"${GAMEID}"'"
     }
   }'

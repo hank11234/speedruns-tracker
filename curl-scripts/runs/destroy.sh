@@ -1,6 +1,11 @@
-curl "http://localhost:4741/games/${ID}" \
+curl "http://localhost:4741/runs/${ID}" \
   --include \
   --request DELETE \
-  --header "Authorization: Bearer ${TOKEN}"
+  --header "Authorization: Bearer ${TOKEN}" \
+  --data '{
+    "run": {
+      "gameId": "'"${GAMEID}
+    }
+  }'
 
 echo

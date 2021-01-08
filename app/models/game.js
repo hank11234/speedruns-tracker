@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const runSchema = require('./run')
 
 const gameSchema = new mongoose.Schema({
     title: {
@@ -17,7 +18,7 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    speedruns: [speedrunSchema],
+    runs: [runSchema],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
