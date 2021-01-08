@@ -17,7 +17,7 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // speedruns: [speedrunSchema],
+    speedruns: [speedrunSchema],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
