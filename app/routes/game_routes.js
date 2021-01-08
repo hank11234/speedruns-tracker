@@ -28,7 +28,7 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // INDEX
 // GET /games
 router.get('/games', requireToken, (req, res, next) => {
-    Game.find()
+    Game.find({ owner: req.user._id })
       .then(games => {
         // `games` will be an array of Mongoose documents
         // we want to convert each one to a POJO, so we use `.map` to
@@ -45,7 +45,7 @@ router.get('/games', requireToken, (req, res, next) => {
   // GET /games/:id
   router.get('/games/:id', requireToken, (req, res, next) => {
     // req.params.id will be set based on the `:id` in the route
-    Game.findById(req.params.id)
+    Game.findOne({ _id: req.params.id, owner: req.user._id})
       .then(handle404)
       // if `findById` is succesful, respond with 200 and "game" JSON
       .then(game => res.status(200).json({ game: game.toObject() }))
@@ -77,7 +77,7 @@ router.get('/games', requireToken, (req, res, next) => {
     // owner, prevent that by deleting that key/value pair
     delete req.body.game.owner
   
-    Game.findById(req.params.id)
+    Game.findOne({ _id: req.params.id, owner: req.user._id})
       .then(handle404)
       .then(game => {
         // pass the `req` object and the Mongoose record to `requireOwnership`
@@ -96,7 +96,7 @@ router.get('/games', requireToken, (req, res, next) => {
   // DESTROY
   // DELETE /games/:id
   router.delete('/games/:id', requireToken, (req, res, next) => {
-    Game.findById(req.params.id)
+    Game.findOne({ _id: req.params.id, owner: req.user._id})
       .then(handle404)
       .then(game => {
         // throw an error if current user doesn't own `game`
