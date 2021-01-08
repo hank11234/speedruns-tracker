@@ -13,6 +13,10 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    platform: {
+        type: String,
+        required: true
+    },
     // speedruns: [speedrunSchema],
     owner: {
         type: mongoose.Schema.Types.ObjectId,
