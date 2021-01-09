@@ -46,43 +46,43 @@ router.post('/runs', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-router.delete('/reviews/:reviewId', requireToken, (req, res, next) => {
-    // extract review ID
-    const reviewId = req.params.reviewId
-    // extract restaurant Id
-    const restaurantId = req.body.review
+router.delete('/runs/:runId', requireToken, (req, res, next) => {
+    // extract run ID
+    const runId = req.params.runId
+    // extract game Id
+    const gameId = req.body.run.gameId
 
-    Restaurant.findById(restaurantId)
+    Game.findById(gameId)
     .then(handle404)
-    .then(restaurant => {
+    .then(game => {
         // remove the review from the reviews subdoc array
-        restaurant.reviews.id(reviewId).remove()
+        game.runs.id(runId).remove()
 
         // save the review's parent doc to save deletion
-        return restaurants.save()
+        return game.save()
     })
     // response with status 204 "no content"
     .then(() => res.sendStatus(204))
     .catch(next)
 })
 
-router.patch('/reviews/:reviewId', requireToken, (req, res, next) => {
+router.patch('/runs/:runId', requireToken, (req, res, next) => {
     // extract the reviewId
-    const reviewId = req.params.reviewId
+    const runId = req.params.runId
 
     // extract the restaurantId
-    const restaurantId = req.body.restaurantId
+    const gameId = req.body.gameId
     
     // extract review from incoming request data
-    const reviewData = req.body.review
+    const runData = req.body.run
 
-    Restaurant.findById(restaurantId)
+    Game.findById(gameId)
     .then(handle404)
-    .then(restaurant => {
+    .then(game => {
         // find the review whose id is reviewId in the reviews subdoc array
-        const review = restaurant.reviews.id(reviewId)
-        review.set(reviewData)
-        return restaurant.save()
+        const run = game.runs.id(runId)
+        run.set(runData)
+        return game.save()
     })
     .then(() => res.sendStatus(204))
     .catch(next)
