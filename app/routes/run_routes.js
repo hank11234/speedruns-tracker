@@ -71,7 +71,7 @@ router.patch('/runs/:runId', requireToken, (req, res, next) => {
     const runId = req.params.runId
 
     // extract the restaurantId
-    const gameId = req.body.gameId
+    const gameId = req.body.run.gameId
     
     // extract review from incoming request data
     const runData = req.body.run
