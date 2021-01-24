@@ -27,4 +27,4 @@ Initially my plan was to create the credential functions, then design the API fo
 - Add time input for run length
 
 ### Entitiy Relationship Diagram
-![ERD](https://imgur.com/a/8y4QCNE)
+![ERD](https://i.imgur.com/VzCWFCK.jpg)
